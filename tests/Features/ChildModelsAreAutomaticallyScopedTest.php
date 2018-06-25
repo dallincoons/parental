@@ -10,6 +10,7 @@ use Tightenco\Parental\Tests\Models\Passenger;
 use Tightenco\Parental\Tests\Models\Trip;
 use Tightenco\Parental\Tests\Models\User;
 use Tightenco\Parental\Tests\Models\Vehicle;
+use Tightenco\Parental\Tests\Models\VehicleWithScopes;
 use Tightenco\Parental\Tests\TestCase;
 
 class ChildModelsAreAutomaticallyScopedTest extends TestCase
@@ -84,7 +85,7 @@ class ChildModelsAreAutomaticallyScopedTest extends TestCase
             'seats' => 5
         ]);
 
-        $this->assertEquals(0, Vehicle::count());
+        $this->assertEquals(0, VehicleWithScopes::count());
 
         $car = Car::create([
             'seats' => 5

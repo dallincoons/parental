@@ -62,6 +62,14 @@ class TestCase extends BaseTestCase
             $table->timestamps();
         });
 
+        Schema::create('vehicle_with_scopes', function ($table) {
+            $table->increments('id');
+            $table->integer('seats')->nullable();
+            $table->integer('driver_id')->nullable();
+            $table->string('type')->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('users', function ($table) {
             $table->increments('id');
             $table->timestamps();
