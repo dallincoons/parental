@@ -4,6 +4,7 @@ namespace Tightenco\Parental\Tests\Features;
 
 use Tightenco\Parental\Tests\Models\Admin;
 use Tightenco\Parental\Tests\Models\Car;
+use Tightenco\Parental\Tests\Models\CarWithScope;
 use Tightenco\Parental\Tests\Models\Driver;
 use Tightenco\Parental\Tests\Models\Passenger;
 use Tightenco\Parental\Tests\Models\Trip;
@@ -70,5 +71,25 @@ class ChildModelsAreAutomaticallyScopedTest extends TestCase
 
         $this->assertCount(1, $trip->cars);
         $this->assertCount(2, $trip->vehicles);
+    }
+
+    /** @test */
+    public function child_global_scopes_are_applied()
+    {
+        $scopedCar = CarWithScope::create(['seats' => 2]);
+
+        $this->assertInstanceOf(CarWithScope::class, Vehicle::first());
+
+        $scopedCar->update([
+            'seats' => 5
+        ]);
+
+        $this->assertEquals(0, Vehicle::count());
+
+        $car = Car::create([
+            'seats' => 5
+        ]);
+
+        $this->assertInstanceOf(Car::class, Vehicle::first());
     }
 }

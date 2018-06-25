@@ -10,7 +10,7 @@ class Vehicle extends Model
     use ReturnsChildModels;
 
     protected $fillable = [
-        'type', 'driver_id'
+        'type', 'driver_id', 'seats'
     ];
 
     public function driver()
